@@ -22,7 +22,7 @@ mkdir -p "$OUTPUT_FOLDER"
 
 # If this is the first time, clone the project
 if [ ! -d "$VAULT_FOLDER" ]; then
-    git clone --recursive https://github.com/bitwarden/web.git "$VAULT_FOLDER"
+    git clone --recurse-submodules https://github.com/bitwarden/web.git "$VAULT_FOLDER"
 fi
 
 cd $VAULT_FOLDER
@@ -39,7 +39,7 @@ git checkout "$VAULT_VERSION"
 git submodule update --recursive --init
 
 ## How to create patches
-# git --no-pager diff --no-color --minimal > changes.patch
+# git --no-pager diff --submodule=diff --no-color --minimal > changes.patch
 ## How to apply patches
 # git apply changes.patch
 . ../apply_patches.sh
